@@ -8,7 +8,10 @@ const upload = multer({ dest: 'uploads/' });
 const router = express.Router()
 
 router.get('/', (req, res) => {
-    res.send('Hello World! from chatRouter.js ')
+    res.json({
+        message:"'💬 Hey there, Chat with us! 🗨️'",
+        routes:["/process-text-stream","/process-text","/process-image"]
+    })
 })
 router.post('/process-text-stream', geminiTextStream) //outputs text as stream
 router.post('/process-text',geminiText) //outputs text as string

@@ -27,6 +27,7 @@ These instructions will help you set up the project on your local machine for de
 4. **Create a `.env` file in the root directory and add the following environment variables:**
     ```sh
     GEMINI_API_KEY="your_api_key_here"
+    FAL_API_KEY="your_api_key_here"
     ```
 
 5. **Start the server:**
@@ -45,5 +46,5 @@ These instructions will help you set up the project on your local machine for de
 | /chat/process-text-stream | POST        | Processes a text input in the body as a stream using the Gemini model |
 | /chat/process-image       | POST        | Processes an image input with a prompt in form-data using the Gemini model |
 |                           |             |                                         |
-| /images                   | GET         | Returns a greeting from the chat router |
+| /images                   | GET         | Returns a greeting from the image router |
 | /images/fal               | POST        | Processes an image input with a prompt and model selection using the FAL AI service |

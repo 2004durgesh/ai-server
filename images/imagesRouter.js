@@ -6,7 +6,10 @@ const upload = multer()
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  res.send('Hello World! from imagesRouter.js')
+    res.json({
+        message: '🖼️ Welcome to the images endpoint! 🖼️',
+        routes:"/fal"
+    })
 })
 router.post('/fal', upload.single('file'), falAI)
 

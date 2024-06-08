@@ -11,7 +11,10 @@ app.use(bodyParser.json())
 app.use(express.json({limit: '50mb'}))
 
 app.get('/', (req, res) => {
-  res.send('Hello World! from index.js')
+  res.json({
+    message:'🎉 Welcome to ai-server! 🚀',
+    routes: ['/chat', '/images']
+  })
 })
 
 app.use('/chat', chatRouter)
