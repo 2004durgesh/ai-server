@@ -34,7 +34,6 @@ These instructions will help you set up the project on your local machine for de
     npm start
     ```
 
-Here's the updated API Endpoints section in the `README.md`:
 
 ## API Endpoints 🛣️📡
 
@@ -45,16 +44,6 @@ Here's the updated API Endpoints section in the `README.md`:
 | /chat/process-text        | POST        | Processes a text input in the body and gives output as a string       |
 | /chat/process-text-stream | POST        | Processes a text input in the body as a stream using the Gemini model |
 | /chat/process-image       | POST        | Processes an image input with a prompt in form-data using the Gemini model |
-
-
-### Example Usage
-
-1. **Process Text Stream:**
-    ```sh
-    curl -X POST http://localhost:3000/chat/process-text-stream -H "Content-Type: application/json" -d '{"prompt": "Your prompt here"}'
-    ```
-
-2. **Process Image:**
-    ```sh
-    curl -X POST http://localhost:3000/chat/process-image -F "image=@path_to_your_image" -F "prompt=Do these look store-bought or homemade?"
-    ```
+|                           |             |                                         |
+| /images                   | GET         | Returns a greeting from the chat router |
+| /images/fal               | POST        | Processes an image input with a prompt and model selection using the FAL AI service |
