@@ -57,76 +57,76 @@ export async function geminiText(req, res) {
 
 }
 
-export async function geminiImageInput(req, res) {
-    try {
-        const { prompt } = req.body;
-        if (!prompt) {
-          return res.status(400).json({
-            error: 'no prompt',
-          });
-        }
+// export async function geminiImageInput(req, res) {
+//     try {
+//         const { prompt } = req.body;
+//         if (!prompt) {
+//           return res.status(400).json({
+//             error: 'no prompt',
+//           });
+//         }
     
-        if (!req.file) {
-          return res.status(400).json({
-            error: 'no image file',
-          });
-        }
+//         if (!req.file) {
+//           return res.status(400).json({
+//             error: 'no image file',
+//           });
+//         }
     
-        const imagePath = path.resolve(req.file.path);
-        const imageBuffer = fs.readFileSync(imagePath);
-        const imageBase64 = imageBuffer.toString('base64');
-        const imageMimeType = req.file.mimetype;
+//         const imagePath = path.resolve(req.file.path);
+//         const imageBuffer = fs.readFileSync(imagePath);
+//         const imageBase64 = imageBuffer.toString('base64');
+//         const imageMimeType = req.file.mimetype;
     
-        const image = {
-          inlineData: {
-            data: imageBase64,
-            mimeType: imageMimeType,
-          },
-        };
+//         const image = {
+//           inlineData: {
+//             data: imageBase64,
+//             mimeType: imageMimeType,
+//           },
+//         };
     
         
-        const result = await model.generateContent([prompt, image]);
+//         const result = await model.generateContent([prompt, image]);
     
-        // Delete the uploaded image after processing
-        fs.unlinkSync(imagePath);
+//         // Delete the uploaded image after processing
+//         fs.unlinkSync(imagePath);
     
-        res.json(result);
-      } catch (err) {
-        console.log('error in Gemini image processing: ', err);
-        res.status(500).json({ error: 'internal server error' });
-      }
-}
-
-// export async function geminiImageInput(req, res) {
-//   try {
-//       const { prompt, imageBase64, imageMimeType } = req.body;
-//       if (!prompt) {
-//         return res.status(400).json({
-//           error: 'no prompt',
-//         });
+//         res.json(result);
+//       } catch (err) {
+//         console.log('error in Gemini image processing: ', err);
+//         res.status(500).json({ error: 'internal server error' });
 //       }
-  
-//       if (!imageBase64 || !imageMimeType) {
-//         return res.status(400).json({
-//           error: 'no image data',
-//         });
-//       }
-  
-//       const image = {
-//         inlineData: {
-//           data: imageBase64,
-//           mimeType: imageMimeType,
-//         },
-//       };
-  
-//       const result = await model.generateContent([prompt, image]);
-  
-//       res.json(result);
-//     } catch (err) {
-//       console.log('error in Gemini image processing: ', err);
-//       res.status(500).json({ error: 'internal server error' });
-//     }
 // }
+
+export async function geminiImageInput(req, res) {
+  try {
+      const { prompt, imageBase64, imageMimeType } = req.body;
+      if (!prompt) {
+        return res.status(400).json({
+          error: 'no prompt',
+        });
+      }
+  
+      if (!imageBase64 || !imageMimeType) {
+        return res.status(400).json({
+          error: 'no image data',
+        });
+      }
+  
+      const image = {
+        inlineData: {
+          data: imageBase64,
+          mimeType: imageMimeType,
+        },
+      };
+  
+      const result = await model.generateContent([prompt, image]);
+  
+      res.json(result);
+    } catch (err) {
+      console.log('error in Gemini image processing: ', err);
+      res.status(500).json({ error: 'internal server error' });
+    }
+}
 export async function streamToStdout(stream, res) {
     for await (const chunk of stream) {
         const chunkText = chunk.text()

@@ -1,8 +1,6 @@
 import express from 'express'
-import multer from 'multer'
 import { falAI } from './fal.js'
 
-const upload = multer()
 const router = express.Router()
 
 router.get('/', (req, res) => {
@@ -11,6 +9,6 @@ router.get('/', (req, res) => {
         routes:"/fal"
     })
 })
-router.post('/fal', upload.single('file'), falAI)
+router.post('/fal', falAI)
 
 export default router
