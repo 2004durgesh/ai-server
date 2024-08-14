@@ -1,7 +1,5 @@
 # AI Server 🚀
 
-This is a server-side application for the RBL Project, utilizing Google's Generative AI for text and image processing. The server is built with Node.js and Express.
-
 ## Getting Started 🏁
 
 These instructions will help you set up the project on your local machine for development and testing purposes.
